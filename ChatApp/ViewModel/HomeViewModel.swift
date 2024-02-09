@@ -6,8 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
     @Published var selectedTab :Tabs = .allChats
+    
+    @Published var recentMessage: [RecentMessage] = dummyRecentMessages
+    
+    @Published var selectedRecentMessage: String? = dummyRecentMessages.first?.id
 }
+
+

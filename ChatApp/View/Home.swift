@@ -39,8 +39,7 @@ struct Home: View {
             ZStack {
                 switch homeViewModel.selectedTab {
                 case .Bots : Text(homeViewModel.selectedTab.rawValue)
-                    
-                case .allChats: Text(homeViewModel.selectedTab.rawValue)
+                case .allChats: AllChatsView()
                 case .edit:
                     Text(homeViewModel.selectedTab.rawValue)
                 case .personal:
@@ -51,8 +50,9 @@ struct Home: View {
             }
             .frame(maxWidth:.infinity, maxHeight: .infinity)
         }
-        
+        .ignoresSafeArea(.all, edges: .all)
         .frame(width: screen.width / 1.2, height: screen.height - 60)
+        .environmentObject(homeViewModel)
     }
 }
 

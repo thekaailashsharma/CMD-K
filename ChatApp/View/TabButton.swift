@@ -24,7 +24,7 @@ struct TabButton: View {
                     .foregroundColor(selectedTab == tabInfo.title ? .white : .gray)
                 
                 Text(tabInfo.title.rawValue)
-                    .font(.custom("Poppins-Regular", size: 9))
+                    .font(.custom("Poppins-Regular", size: 13))
                     .font(.system(size: 9))
                     .foregroundColor(selectedTab == tabInfo.title ? .white : .gray)
                     .padding(.horizontal, 5)
