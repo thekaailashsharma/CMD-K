@@ -12,12 +12,17 @@ struct AllChatsView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     
     var body: some View {
-        
         List(selection: $homeViewModel.selectedRecentMessage) {
             ForEach(homeViewModel.recentMessage) { msg in
-                RecentCardView(recentMessage: msg)
+                NavigationLink {
+                    Text("Destination")
+                } label: {
+                    RecentCardView(recentMessage: msg)
+                }
+            
             }
         }
+        .listStyle(SidebarListStyle())
     }
 }
 

@@ -17,42 +17,48 @@ struct Home: View {
     
     var body: some View {
         
-        
-        HStack {
-            VStack {
-                TabButton(tabInfo: TabDefinition(image: "message", title: .allChats), selectedTab: $homeViewModel.selectedTab)
-                
-                TabButton(tabInfo: TabDefinition(image: "person.fill", title: .personal), selectedTab: $homeViewModel.selectedTab)
-                
-                TabButton(tabInfo: TabDefinition(image: "bubble.middle.bottom", title: .Bots), selectedTab: $homeViewModel.selectedTab)
-                
-                TabButton(tabInfo: TabDefinition(image: "slider.horizontal.3", title: .edit), selectedTab: $homeViewModel.selectedTab)
-                
-                Spacer()
-                
-                TabButton(tabInfo: TabDefinition(image: "gear", title: .Settings), selectedTab: $homeViewModel.selectedTab)
-            }
-            .padding()
-            .padding(.top, 30)
-            .background(.ultraThickMaterial)
-            
-            ZStack {
-                switch homeViewModel.selectedTab {
-                case .Bots : Text(homeViewModel.selectedTab.rawValue)
-                case .allChats: AllChatsView()
-                case .edit:
-                    Text(homeViewModel.selectedTab.rawValue)
-                case .personal:
-                    Text(homeViewModel.selectedTab.rawValue)
-                case .Settings:
-                    Text(homeViewModel.selectedTab.rawValue)
+        NavigationView {
+            HStack(spacing: 0) {
+                VStack {
+                    TabButton(tabInfo: TabDefinition(image: "message", title: .allChats), selectedTab: $homeViewModel.selectedTab)
+                    
+                    TabButton(tabInfo: TabDefinition(image: "person.fill", title: .personal), selectedTab: $homeViewModel.selectedTab)
+                    
+                    TabButton(tabInfo: TabDefinition(image: "bubble.middle.bottom", title: .Bots), selectedTab: $homeViewModel.selectedTab)
+                    
+                    TabButton(tabInfo: TabDefinition(image: "slider.horizontal.3", title: .edit), selectedTab: $homeViewModel.selectedTab)
+                    
+                    Spacer()
+                    
+                    TabButton(tabInfo: TabDefinition(image: "gear", title: .Settings), selectedTab: $homeViewModel.selectedTab)
                 }
+                .padding()
+                .padding(.top, 30)
+                .background(.ultraThickMaterial)
+               
+                
+                ZStack {
+                    switch homeViewModel.selectedTab {
+                    case .Bots : Text(homeViewModel.selectedTab.rawValue)
+                    case .allChats: AllChatsView()
+                            .padding(.top, 30)
+                    case .edit:
+                        Text(homeViewModel.selectedTab.rawValue)
+                            .padding(.top, 30)
+                    case .personal:
+                        Text(homeViewModel.selectedTab.rawValue)
+                            .padding(.top, 30)
+                    case .Settings:
+                        Text(homeViewModel.selectedTab.rawValue)
+                            .padding(.top, 30)
+
+                    }
+                }
+                
             }
-            .frame(maxWidth:.infinity, maxHeight: .infinity)
-        }
-        .ignoresSafeArea(.all, edges: .all)
-        .frame(width: screen.width / 1.2, height: screen.height - 60)
-        .environmentObject(homeViewModel)
+        }.ignoresSafeArea(.all, edges: .all)
+            .frame(width: screen.width / 1.2, height: screen.height - 60)
+            .environmentObject(homeViewModel)
     }
 }
 
