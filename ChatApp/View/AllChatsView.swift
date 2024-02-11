@@ -12,17 +12,49 @@ struct AllChatsView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     
     var body: some View {
-        List(selection: $homeViewModel.selectedRecentMessage) {
-            ForEach(homeViewModel.recentMessage) { msg in
-                NavigationLink {
-                    Text("Destination")
-                } label: {
-                    RecentCardView(recentMessage: msg)
-                }
+        VStack {
             
+            HStack {
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                }
+                .padding()
+                .buttonStyle(.plain)
+
             }
+            
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                
+                TextField("Search", text: $homeViewModel.searchText)
+                    .textFieldStyle(.plain)
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal)
+            .background(.primary.opacity(0.15))
+            .cornerRadius(10)
+            .padding()
+            
+            List(selection: $homeViewModel.selectedRecentMessage) {
+                ForEach(homeViewModel.recentMessage) { msg in
+                    NavigationLink {
+                        Text("Destination")
+                    } label: {
+                        RecentCardView(recentMessage: msg)
+                    }
+                
+                }
+            }
+            .listStyle(SidebarListStyle())
         }
-        .listStyle(SidebarListStyle())
+        .frame(width: (screen.width / 1.2) / 4)
     }
 }
 

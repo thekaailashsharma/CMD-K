@@ -21,15 +21,15 @@ struct Home: View {
             HStack(spacing: 0) {
                 VStack {
                     TabButton(tabInfo: TabDefinition(image: "message", title: .allChats), selectedTab: $homeViewModel.selectedTab)
-                    
+
                     TabButton(tabInfo: TabDefinition(image: "person.fill", title: .personal), selectedTab: $homeViewModel.selectedTab)
-                    
+
                     TabButton(tabInfo: TabDefinition(image: "bubble.middle.bottom", title: .Bots), selectedTab: $homeViewModel.selectedTab)
-                    
+
                     TabButton(tabInfo: TabDefinition(image: "slider.horizontal.3", title: .edit), selectedTab: $homeViewModel.selectedTab)
-                    
+
                     Spacer()
-                    
+
                     TabButton(tabInfo: TabDefinition(image: "gear", title: .Settings), selectedTab: $homeViewModel.selectedTab)
                 }
                 .padding()
@@ -40,17 +40,19 @@ struct Home: View {
                 ZStack {
                     switch homeViewModel.selectedTab {
                     case .Bots : Text(homeViewModel.selectedTab.rawValue)
-                    case .allChats: AllChatsView()
-                            .padding(.top, 30)
+                    case .allChats:
+                        NavigationView {
+                            AllChatsView()
+                        }
                     case .edit:
                         Text(homeViewModel.selectedTab.rawValue)
-                            .padding(.top, 30)
+                            
                     case .personal:
                         Text(homeViewModel.selectedTab.rawValue)
-                            .padding(.top, 30)
+                            
                     case .Settings:
                         Text(homeViewModel.selectedTab.rawValue)
-                            .padding(.top, 30)
+                            
 
                     }
                 }
