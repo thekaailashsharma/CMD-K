@@ -17,6 +17,9 @@ class HomeViewModel: ObservableObject {
     @Published var selectedRecentMessage: String? = dummyRecentMessages.first?.id
     
     @Published var searchText: String = ""
+    @Published var message: String = ""
+    
+    @Published var isExpanded: Bool = false
 }
 
 

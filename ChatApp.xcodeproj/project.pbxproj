@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8466DD1D2B79000D00C15519 /* ExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466DD1C2B79000D00C15519 /* ExpandedView.swift */; };
 		84B14D1F2B78D06100643FE2 /* TextFieldEtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B14D1E2B78D06100643FE2 /* TextFieldEtension.swift */; };
+		84B14D232B78D14900643FE2 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B14D222B78D14900643FE2 /* DetailView.swift */; };
 		84BCEC172B7663C400F29A18 /* ChatAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCEC162B7663C400F29A18 /* ChatAppApp.swift */; };
 		84BCEC192B7663C400F29A18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCEC182B7663C400F29A18 /* ContentView.swift */; };
 		84BCEC1B2B7663C600F29A18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84BCEC1A2B7663C600F29A18 /* Assets.xcassets */; };
@@ -23,10 +25,13 @@
 		84BCEC3F2B76A52B00F29A18 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCEC3E2B76A52B00F29A18 /* Message.swift */; };
 		84BCEC412B76A8D400F29A18 /* RecentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCEC402B76A8D300F29A18 /* RecentCardView.swift */; };
 		84BCEC452B76B0BD00F29A18 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCEC442B76B0BD00F29A18 /* ImageViewModel.swift */; };
+		84DC97DB2B790AA400641FA7 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC97DA2B790AA400641FA7 /* MessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8466DD1C2B79000D00C15519 /* ExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedView.swift; sourceTree = "<group>"; };
 		84B14D1E2B78D06100643FE2 /* TextFieldEtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldEtension.swift; sourceTree = "<group>"; };
+		84B14D222B78D14900643FE2 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		84BCEC132B7663C400F29A18 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BCEC162B7663C400F29A18 /* ChatAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppApp.swift; sourceTree = "<group>"; };
 		84BCEC182B7663C400F29A18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +50,7 @@
 		84BCEC3E2B76A52B00F29A18 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		84BCEC402B76A8D300F29A18 /* RecentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCardView.swift; sourceTree = "<group>"; };
 		84BCEC442B76B0BD00F29A18 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		84DC97DA2B790AA400641FA7 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,9 @@
 				84BCEC302B76926D00F29A18 /* BlurView.swift */,
 				84BCEC3A2B76A22C00F29A18 /* AllChatsView.swift */,
 				84BCEC402B76A8D300F29A18 /* RecentCardView.swift */,
+				84B14D222B78D14900643FE2 /* DetailView.swift */,
+				8466DD1C2B79000D00C15519 /* ExpandedView.swift */,
+				84DC97DA2B790AA400641FA7 /* MessageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,13 +222,16 @@
 				84BCEC192B7663C400F29A18 /* ContentView.swift in Sources */,
 				84BCEC312B76926D00F29A18 /* BlurView.swift in Sources */,
 				84BCEC3D2B76A47200F29A18 /* RecentMessage.swift in Sources */,
+				84B14D232B78D14900643FE2 /* DetailView.swift in Sources */,
 				84B14D1F2B78D06100643FE2 /* TextFieldEtension.swift in Sources */,
 				84BCEC292B766E4E00F29A18 /* TabButton.swift in Sources */,
 				84BCEC272B766DA200F29A18 /* Home.swift in Sources */,
 				84BCEC3B2B76A22C00F29A18 /* AllChatsView.swift in Sources */,
+				8466DD1D2B79000D00C15519 /* ExpandedView.swift in Sources */,
 				84BCEC452B76B0BD00F29A18 /* ImageViewModel.swift in Sources */,
 				84BCEC2C2B76714300F29A18 /* HomeViewModel.swift in Sources */,
 				84BCEC3F2B76A52B00F29A18 /* Message.swift in Sources */,
+				84DC97DB2B790AA400641FA7 /* MessageView.swift in Sources */,
 				84BCEC172B7663C400F29A18 /* ChatAppApp.swift in Sources */,
 				84BCEC2F2B7671A600F29A18 /* Tabs.swift in Sources */,
 				84BCEC412B76A8D400F29A18 /* RecentCardView.swift in Sources */,

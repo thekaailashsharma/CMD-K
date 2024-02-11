@@ -45,7 +45,7 @@ struct AllChatsView: View {
             List(selection: $homeViewModel.selectedRecentMessage) {
                 ForEach(homeViewModel.recentMessage) { msg in
                     NavigationLink {
-                        Text("Destination")
+                        DetailView(user: msg)
                     } label: {
                         RecentCardView(recentMessage: msg)
                     }
