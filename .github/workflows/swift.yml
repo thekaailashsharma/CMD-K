@@ -6,15 +6,13 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: macos-latest
-
+  macos:
+    runs-on: macOS-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Install dependencies
-      run: |
-        xcodebuild -resolvePackageDependencies
-        
-    - name: Build macOS app
-      run: xcodebuild clean build -project ChatApp.xcodeproj -scheme ChatApp
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Build and Test
+        run: swift test
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_14.2.app/Contents/Developer
+
