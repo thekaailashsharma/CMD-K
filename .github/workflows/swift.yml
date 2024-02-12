@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-        
+    - name: Install dependencies
+      run: |
+        xcodebuild -resolvePackageDependencies
     - name: Build macOS app
-      run: xcodebuild -workspace ChatApp.xcworkspace -scheme ChatApp -configuration Release clean build
+      run: xcodebuild test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO clean build -project ChatApp.xcodeproj -scheme ChatApp
