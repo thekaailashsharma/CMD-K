@@ -10,18 +10,32 @@ import SwiftUI
 struct MessageView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
+//    @Binding var isScrollChanged: Bool
     
-    var recentMessage: RecentMessage
+    var recentMessage: [MyChats]
     
     var body: some View {
-        GeometryReader { reader in
-            ScrollView {
-                VStack(spacing: 18) {
-                    ForEach(recentMessage.allMessage) { message in
-                        MessageCardView(message: message, userImage: recentMessage.userImage, width: reader.frame(in: .global).width)
+            GeometryReader { reader in
+                ScrollView {
+                    ScrollViewReader { proxy in
+                    VStack(spacing: 18) {
+                        ForEach(recentMessage) { message in
+                            MessageCardView(message: message, width: reader.frame(in: .global).width)
+                                .padding(.horizontal, 20)
+                                .id(recentMessage.firstIndex(of: message))
+                        }
+                        .onChange(of: recentMessage.count, perform: { newValue in
+                            print(">>>!!! New Value is called atleast")
+                            withAnimation(.spring()) {
+                                proxy.scrollTo(recentMessage.count - 1, anchor: .bottomTrailing)
+                            }
+                        })
+                            
+                        
                     }
+                    .padding(.vertical, 20)
+                    
                 }
-                
             }
         }
     }
@@ -29,14 +43,14 @@ struct MessageView: View {
 
 struct MessageCardView: View {
     
-    var message: Message
-    var userImage: String
+    var message: MyChats
+    var userImage: String = dummyRecentMessages[0].userImage
     var width: CGFloat
     
     var body: some View {
         
         HStack {
-            if message.isMessageMine {
+            if !message.isUser {
                 HStack {
                     ImageView(urlString: userImage)
                         .background(.primary.opacity(0.3))
@@ -45,7 +59,7 @@ struct MessageCardView: View {
                         .clipShape(Circle())
                         .offset(y: 10)
                     
-                    Text(message.message)
+                    Text(message.message ?? "")
                         .font(.custom("Poppins-Regular", size: 13))
                         .font(.system(size: 9))
                         .padding(10)
@@ -56,7 +70,7 @@ struct MessageCardView: View {
                 }
             } else {
                 Spacer ()
-                Text(message.message)
+                Text(message.message ?? "")
                     .font(.custom("Poppins-Regular", size: 13))
                     .font(.system(size: 9))
                     .padding(10)
@@ -70,14 +84,14 @@ struct MessageCardView: View {
     }
 }
 
-struct MessageView_Previews: PreviewProvider {
-    static var previews: some View {
-        var homeViewModel = HomeViewModel()
-        var recentMessage = dummyRecentMessages[0]
-        MessageView(recentMessage: recentMessage)
-            .environmentObject(homeViewModel)
-    }
-}
+//struct MessageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        var homeViewModel = HomeViewModel()
+////        var recentMessage = dummyRecentMessages[0]
+////        MessageView(recentMessage: recentMessage)
+////            .environmentObject(homeViewModel)
+//    }
+//}
 
 
 struct MessageBubble : Shape {

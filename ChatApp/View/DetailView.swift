@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
+    @EnvironmentObject var chatsManager: ChatManager
     
     var user: RecentMessage
     
@@ -41,7 +42,7 @@ struct DetailView: View {
                 }
                 .padding()
                 
-                MessageView(recentMessage: user)
+                MessageView(recentMessage: chatsManager.allChats)
                 
                 Spacer()
                 
@@ -53,7 +54,9 @@ struct DetailView: View {
                         .clipShape(Capsule())
                         .background(Capsule().strokeBorder(Color.white))
                     Button {
-                        
+                        Task {
+                            await chatsManager.saveMessage(message: homeViewModel.message, isUserMessage: true)
+                        }
                     } label: {
                         Image(systemName: "paperplane")
                             .font(.title2)

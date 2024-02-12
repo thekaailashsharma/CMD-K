@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class HomeViewModel: ObservableObject {
     
@@ -20,6 +21,11 @@ class HomeViewModel: ObservableObject {
     @Published var message: String = ""
     
     @Published var isExpanded: Bool = false
+    
+    @Published var displayedText = "Loading..."
+    
+    private var cancellables = Set<AnyCancellable>()
+    
 }
 
 

@@ -13,6 +13,7 @@ var screen = NSScreen.main!.visibleFrame
 struct Home: View {
     
     @StateObject var homeViewModel = HomeViewModel()
+    @StateObject var chatsManager = ChatManager()
     
     
     var body: some View {
@@ -61,6 +62,7 @@ struct Home: View {
         }.ignoresSafeArea(.all, edges: .all)
             .frame(width: screen.width / 1.2, height: screen.height - 60)
             .environmentObject(homeViewModel)
+            .environmentObject(chatsManager)
     }
 }
 
