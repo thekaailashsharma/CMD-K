@@ -10,27 +10,35 @@ import SwiftUI
 struct MessageView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
-//    @Binding var isScrollChanged: Bool
+    //    @Binding var isScrollChanged: Bool
     
     var recentMessage: [MyChats]
+    @Binding var isChanged: Bool
     
     var body: some View {
-            GeometryReader { reader in
-                ScrollView {
-                    ScrollViewReader { proxy in
+        GeometryReader { reader in
+            ScrollView {
+                ScrollViewReader { proxy in
                     VStack(spacing: 18) {
-                        ForEach(recentMessage) { message in
-                            MessageCardView(message: message, width: reader.frame(in: .global).width)
+                        ForEach(recentMessage.indices, id: \.self) { index in
+                            MessageCardView(message: recentMessage[index], width: reader.frame(in: .global).width)
                                 .padding(.horizontal, 20)
-                                .id(recentMessage.firstIndex(of: message))
+                                .id(index)
                         }
-                        .onChange(of: recentMessage.count, perform: { newValue in
-                            print(">>>!!! New Value is called atleast")
-                            withAnimation(.spring()) {
-                                proxy.scrollTo(recentMessage.count - 1, anchor: .bottomTrailing)
+                        .background(
+                            GeometryReader { geometry in
+                                Color.clear
+                                    .onAppear {
+                                        if recentMessage.count > 0 {
+                                            withAnimation(.easeInOut(duration: 100)) {
+                                                proxy.scrollTo(recentMessage.count - 1, anchor: .bottomLeading)
+                                            }
+                                            
+                                        }
+                                    }
                             }
-                        })
-                            
+                        )
+                        
                         
                     }
                     .padding(.vertical, 20)
@@ -78,7 +86,7 @@ struct MessageCardView: View {
                     .foregroundColor(.white)
                     .clipShape(MyMessageBubble())
                     .frame(minWidth: 0, maxWidth: width / 2, alignment: .trailing)
-                    
+                
             }
         }
     }
@@ -135,4 +143,4 @@ struct MyMessageBubble : Shape {
         }
     }
 }
-    
+

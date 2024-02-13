@@ -14,6 +14,8 @@ actor ChatManager: ObservableObject {
     
     let container: NSPersistentContainer
     @MainActor @Published var allChats: [MyChats] = []
+    @MainActor @Published var isMessageSent: Bool = false
+    
     private var cancellables = Set<AnyCancellable>()
     
     init(inMemory: Bool = false) {
@@ -45,6 +47,7 @@ actor ChatManager: ObservableObject {
     }
     
     func saveMessage(message: String, isUserMessage: Bool) async {
+        await self.updateMessageSent()
         let newChat = MyChats(context: container.viewContext)
         newChat.id = UUID()
         newChat.message = message
@@ -123,6 +126,7 @@ actor ChatManager: ObservableObject {
                     }
                     
                     Task {
+                        await self.updateMessageSent()
                         await self.refreshUI()
                     }
                     
@@ -131,6 +135,12 @@ actor ChatManager: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        
+    }
+    
+    @MainActor
+    private func updateMessageSent() {
+        self.isMessageSent.toggle()
     }
     
     

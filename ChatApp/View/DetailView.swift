@@ -42,7 +42,7 @@ struct DetailView: View {
                 }
                 .padding()
                 
-                MessageView(recentMessage: chatsManager.allChats)
+                MessageView(recentMessage: chatsManager.allChats, isChanged: $chatsManager.isMessageSent)
                 
                 Spacer()
                 
