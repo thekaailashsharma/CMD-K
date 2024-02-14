@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct RecentCardView: View {
+    
     var recentMessage: RecentMessage
+    var savedChats: SavedChats
+    
     var body: some View {
         HStack {
             ImageView(urlString: recentMessage.userImage)
@@ -19,11 +22,11 @@ struct RecentCardView: View {
             VStack(spacing: 4) {
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(recentMessage.userName)
+                        Text(savedChats.name)
                             .font(.custom("Poppins-Regular", size: 13))
                             .foregroundColor(.white)
                         
-                        Text(recentMessage.lastMsg)
+                        Text(savedChats.lastMessage)
                             .font(.custom("Poppins-Regular", size: 13))
                             .font(.system(size: 9))
                             .foregroundColor(.gray)
@@ -37,8 +40,10 @@ struct RecentCardView: View {
                             .foregroundColor(.white)
                         
                         Spacer()
-                        
-                        Text(recentMessage.pendingMsg)
+                        var count = savedChats.messages.filter({ chats in
+                            chats.isUser == true
+                        }).count
+                        Text("\(count)")
                             .font(.custom("Poppins-Regular", size: 13))
                             .padding(5)
                             .foregroundColor(.white)

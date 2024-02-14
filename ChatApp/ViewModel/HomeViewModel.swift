@@ -19,10 +19,13 @@ class HomeViewModel: ObservableObject {
     
     @Published var searchText: String = ""
     @Published var message: String = ""
+    @Published var savedName: String = ""
     
     @Published var isExpanded: Bool = false
+    @Published var isSaveOpen: Bool = false
     
     @Published var displayedText = "Loading..."
+    @Published var chatName = "New Chat"
     
     private var cancellables = Set<AnyCancellable>()
     

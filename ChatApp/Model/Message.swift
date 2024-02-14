@@ -13,6 +13,12 @@ struct Message: Identifiable, Equatable {
     var isMessageMine: Bool 
 }
 
+struct SavedChats: Identifiable {
+    var id: UUID = UUID()
+    var name: String
+    var lastMessage: String
+    var messages: [MyChats]
+}
 
 let dummyMessages: [Message] = [
     Message(message: "Hello", isMessageMine: false),

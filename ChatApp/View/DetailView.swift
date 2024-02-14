@@ -11,15 +11,14 @@ struct DetailView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var chatsManager: ChatManager
-    
-    var user: RecentMessage
+    var savedMessage: SavedChats
     
     var body: some View {
         
         HStack {
             VStack {
                 HStack {
-                    Text(user.userName)
+                    Text("John Doe")
                         .font(.title2)
                         .foregroundColor(.white)
                     
@@ -38,11 +37,11 @@ struct DetailView: View {
                             .font(.title2)
                             .foregroundColor(homeViewModel.isExpanded ? .primary : .blue)
                     }.buttonStyle(.plain)
-
+                    
                 }
                 .padding()
                 
-                MessageView(recentMessage: chatsManager.allChats, isChanged: $chatsManager.isMessageSent)
+                MessageView(recentMessage: savedMessage.messages, isChanged: $chatsManager.isMessageSent)
                 
                 Spacer()
                 
@@ -55,24 +54,32 @@ struct DetailView: View {
                         .background(Capsule().strokeBorder(Color.white))
                     Button {
                         Task {
-                            await chatsManager.saveMessage(message: homeViewModel.message, isUserMessage: true)
+                            await chatsManager.saveMessage(message: homeViewModel.message, isUserMessage: true, chatName: savedMessage.name)
+                            if (savedMessage.messages.count == 1) {
+                                print("Insideee")
+                                await chatsManager.getMessageName(userMessage: homeViewModel.message, currentName: "New Chat")
+                            }
                         }
                     } label: {
                         Image(systemName: "paperplane")
                             .font(.title2)
                     }
                     .buttonStyle(.plain)
-
+                    
                 }
                 .padding([.horizontal, .bottom])
                 
             }
             .padding()
             
-//            ExpandedView(user: user)
-//                .frame(width: 200)
-//                .background(BlurView())
-        
+            //            if homeViewModel.isSaveOpen {
+            //                SaveAlert(isShown: $homeViewModel.isSaveOpen)
+            //            }
+            
+            //            ExpandedView(user: user)
+            //                .frame(width: 200)
+            //                .background(BlurView())
+            
         }.ignoresSafeArea(.all, edges: .all)
         
     }

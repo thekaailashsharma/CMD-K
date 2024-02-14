@@ -10,6 +10,7 @@ import SwiftUI
 struct AllChatsView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
+    @EnvironmentObject var chatsManager: ChatManager
     
     var body: some View {
         VStack {
@@ -18,7 +19,9 @@ struct AllChatsView: View {
                 Spacer()
                 
                 Button {
-                    
+                    Task {
+                        await chatsManager.createNewMessage()
+                    }
                 } label: {
                     Image(systemName: "plus")
                         .font(.title2)
@@ -43,11 +46,11 @@ struct AllChatsView: View {
             .padding()
             
             List(selection: $homeViewModel.selectedRecentMessage) {
-                ForEach(homeViewModel.recentMessage) { msg in
+                ForEach(chatsManager.savedChats, id: \.name) { msg in
                     NavigationLink {
-                        DetailView(user: msg)
+                        DetailView(savedMessage: msg)
                     } label: {
-                        RecentCardView(recentMessage: msg)
+                        RecentCardView(recentMessage: dummyRecentMessages[0], savedChats: msg)
                     }
                 
                 }
