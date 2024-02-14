@@ -54,11 +54,8 @@ struct DetailView: View {
                         .background(Capsule().strokeBorder(Color.white))
                     Button {
                         Task {
-                            await chatsManager.saveMessage(message: homeViewModel.message, isUserMessage: true, chatName: savedMessage.name)
-                            if (savedMessage.messages.count == 1) {
-                                print("Insideee")
-                                await chatsManager.getMessageName(userMessage: homeViewModel.message, currentName: "New Chat")
-                            }
+                            await chatsManager.saveMessage(message: homeViewModel.message, isUserMessage: true, chatName: savedMessage.name,
+                                                           isFirst:  savedMessage.messages.count == 1)
                         }
                     } label: {
                         Image(systemName: "paperplane")

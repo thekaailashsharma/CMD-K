@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		844C49272B7C526300E97528 /* Gemini.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844C49252B7C526300E97528 /* Gemini.xcdatamodeld */; };
 		8466DD1D2B79000D00C15519 /* ExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466DD1C2B79000D00C15519 /* ExpandedView.swift */; };
-		849EC6EA2B7A25E700DC91C0 /* Chats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 849EC6E82B7A25E700DC91C0 /* Chats.xcdatamodeld */; };
 		849EC6F12B7A295A00DC91C0 /* DataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EC6F02B7A295A00DC91C0 /* DataContainer.swift */; };
 		849EC6F52B7A2B4800DC91C0 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EC6F42B7A2B4800DC91C0 /* ChatsViewModel.swift */; };
 		84B14D1F2B78D06100643FE2 /* TextFieldEtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B14D1E2B78D06100643FE2 /* TextFieldEtension.swift */; };
@@ -30,13 +30,12 @@
 		84BCEC452B76B0BD00F29A18 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCEC442B76B0BD00F29A18 /* ImageViewModel.swift */; };
 		84DC97DB2B790AA400641FA7 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC97DA2B790AA400641FA7 /* MessageView.swift */; };
 		84DC97DD2B791B1200641FA7 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC97DC2B791B1200641FA7 /* NetworkError.swift */; };
-		84DC97DF2B791B4900641FA7 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC97DE2B791B4900641FA7 /* WebService.swift */; };
 		84DC97E12B7959CA00641FA7 /* GeminiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC97E02B7959CA00641FA7 /* GeminiResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		844C49262B7C526300E97528 /* Gemini.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gemini.xcdatamodel; sourceTree = "<group>"; };
 		8466DD1C2B79000D00C15519 /* ExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedView.swift; sourceTree = "<group>"; };
-		849EC6E92B7A25E700DC91C0 /* GeminiResponse.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GeminiResponse.xcdatamodel; sourceTree = "<group>"; };
 		849EC6F02B7A295A00DC91C0 /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContainer.swift; sourceTree = "<group>"; };
 		849EC6F42B7A2B4800DC91C0 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
 		84B14D1E2B78D06100643FE2 /* TextFieldEtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldEtension.swift; sourceTree = "<group>"; };
@@ -61,7 +60,6 @@
 		84BCEC442B76B0BD00F29A18 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		84DC97DA2B790AA400641FA7 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		84DC97DC2B791B1200641FA7 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		84DC97DE2B791B4900641FA7 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		84DC97E02B7959CA00641FA7 /* GeminiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,9 +77,9 @@
 		849EC6EF2B7A285200DC91C0 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				849EC6E82B7A25E700DC91C0 /* Chats.xcdatamodeld */,
 				849EC6F02B7A295A00DC91C0 /* DataContainer.swift */,
 				849EC6F42B7A2B4800DC91C0 /* ChatsViewModel.swift */,
+				844C49252B7C526300E97528 /* Gemini.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -147,7 +145,6 @@
 			children = (
 				84BCEC2B2B76714300F29A18 /* HomeViewModel.swift */,
 				84BCEC442B76B0BD00F29A18 /* ImageViewModel.swift */,
-				84DC97DE2B791B4900641FA7 /* WebService.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -245,11 +242,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84DC97DF2B791B4900641FA7 /* WebService.swift in Sources */,
 				84BCEC192B7663C400F29A18 /* ContentView.swift in Sources */,
 				849EC6F12B7A295A00DC91C0 /* DataContainer.swift in Sources */,
 				84BCEC312B76926D00F29A18 /* BlurView.swift in Sources */,
-				849EC6EA2B7A25E700DC91C0 /* Chats.xcdatamodeld in Sources */,
+				844C49272B7C526300E97528 /* Gemini.xcdatamodeld in Sources */,
 				84BCEC3D2B76A47200F29A18 /* RecentMessage.swift in Sources */,
 				84DC97E12B7959CA00641FA7 /* GeminiResponse.swift in Sources */,
 				84B14D232B78D14900643FE2 /* DetailView.swift in Sources */,
@@ -474,13 +470,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		849EC6E82B7A25E700DC91C0 /* Chats.xcdatamodeld */ = {
+		844C49252B7C526300E97528 /* Gemini.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				849EC6E92B7A25E700DC91C0 /* GeminiResponse.xcdatamodel */,
+				844C49262B7C526300E97528 /* Gemini.xcdatamodel */,
 			);
-			currentVersion = 849EC6E92B7A25E700DC91C0 /* GeminiResponse.xcdatamodel */;
-			path = Chats.xcdatamodeld;
+			currentVersion = 844C49262B7C526300E97528 /* Gemini.xcdatamodel */;
+			path = Gemini.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

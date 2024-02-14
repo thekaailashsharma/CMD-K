@@ -21,7 +21,7 @@ actor ChatManager: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Chats")
+        container = NSPersistentContainer(name: "Gemini")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -37,7 +37,7 @@ actor ChatManager: ObservableObject {
         
     }
     
-    func saveMessage(message: String, isUserMessage: Bool, chatName: String = "New Chat") async {
+    func saveMessage(message: String, isUserMessage: Bool, chatName: String = "New Chat", isFirst: Bool = false) async {
         await self.updateMessageSent()
         let newChat = MyChats(context: container.viewContext)
         newChat.id = UUID()
@@ -56,9 +56,17 @@ actor ChatManager: ObservableObject {
             await refreshUI(chatName: chatName)
         }
         
-        Task {
-            await sendToServer(userMessage: message, chatName: chatName)
+        if isFirst {
+            Task {
+                await getMessageName(userMessage: message, currentName: "New Chatss")
+            }
+        } else {
+            Task {
+                await sendToServer(userMessage: message, chatName: chatName)
+            }
         }
+        
+       
     }
     
     func createNewMessage() {
@@ -67,7 +75,7 @@ actor ChatManager: ObservableObject {
         newChat.message = "Hi How Can I help you today?"
         newChat.isUser = false
         newChat.date = Date()
-        newChat.name = "New Chat"
+        newChat.name = "New Chatss"
         
         do {
             try container.viewContext.save()
@@ -211,7 +219,11 @@ actor ChatManager: ObservableObject {
                         Task {
                             await self.updateMessageSent()
                             await self.refreshUI(chatName: text)
+                            await self.sendToServer(userMessage: userMessage, chatName: text)
+                            await self.updateMessageSent()
+                            await self.refreshUI(chatName: text)
                         }
+                        
                     } catch {
                         print("Error renaming chat: \(error)")
                     }
