@@ -42,19 +42,21 @@ struct AllChatsView: View {
             .cornerRadius(10)
             .padding()
             
-            List(selection: $homeViewModel.selectedRecentMessage) {
-                ForEach(homeViewModel.recentMessage) { msg in
-                    NavigationLink {
-                        DetailView(user: msg)
-                    } label: {
-                        RecentCardView(recentMessage: msg)
-                    }
-                
-                }
-            }
-            .listStyle(SidebarListStyle())
+            DetailView()
+            
+//            List(selection: $homeViewModel.selectedRecentMessage) {
+//                ForEach(homeViewModel.recentMessage) { msg in
+////                    NavigationLink {
+//                        DetailView(user: msg)
+////                    } label: {
+////                        RecentCardView(recentMessage: msg)
+////                    }
+//
+//                }
+//            }
+//            .listStyle(SidebarListStyle())
         }
-        .frame(width: (screen.width / 1.2) / 4)
+        .frame(maxWidth: screen.width)
     }
 }
 

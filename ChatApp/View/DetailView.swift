@@ -12,14 +12,12 @@ struct DetailView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var chatsManager: ChatManager
     
-    var user: RecentMessage
-    
     var body: some View {
         
         HStack {
             VStack {
                 HStack {
-                    Text(user.userName)
+                    Text("Gen AI Chat")
                         .font(.title2)
                         .foregroundColor(.white)
                     

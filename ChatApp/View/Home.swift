@@ -60,7 +60,7 @@ struct Home: View {
                 
             }
         }.ignoresSafeArea(.all, edges: .all)
-            .frame(width: screen.width / 1.2, height: screen.height - 60)
+//            .frame(maxWidth: screen.width / 1.2, maxHeight: screen.height - 60)
             .environmentObject(homeViewModel)
             .environmentObject(chatsManager)
     }
