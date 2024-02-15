@@ -11,6 +11,8 @@ struct AllChatsView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var chatsManager: ChatManager
+    @EnvironmentObject var appState: AppState
+    @Binding var savedMessage: SavedChats
     
     var body: some View {
         VStack {
@@ -29,7 +31,7 @@ struct AllChatsView: View {
                 }
                 .padding()
                 .buttonStyle(.plain)
-
+                
             }
             
             HStack {
@@ -45,19 +47,31 @@ struct AllChatsView: View {
             .cornerRadius(10)
             .padding()
             
-            List(selection: $homeViewModel.selectedRecentMessage) {
-                ForEach(chatsManager.savedChats, id: \.name) { msg in
-                    NavigationLink {
-                        DetailView(savedMessage: msg)
-                    } label: {
-                        RecentCardView(recentMessage: dummyRecentMessages[0], savedChats: msg)
-                    }
-                
+            if let currentRoute = appState.currentRoute {
+                switch currentRoute {
+                case .detailView( _ ):
+                    DetailView(savedMessage: $savedMessage)
                 }
+                
+                //                            List(selection: $homeViewModel.selectedRecentMessage) {
+                //                                ForEach(chatsManager.savedChats, id: \.name) { msg in
+                //                                    NavigationLink {
+                //                                        DetailView(savedMessage: msg)
+                //                                    } label: {
+                //                                        RecentCardView(recentMessage: dummyRecentMessages[0], savedChats: msg)
+                //                                    }
+                //                                    .padding()
+                //
+                //
+                //                                }
+                //                            }
+                //                            .padding()
             }
-            .listStyle(SidebarListStyle())
         }
-        .frame(width: (screen.width / 1.2) / 4)
+        
+        
+        
+        //        .frame(width: (screen.width / 1.2) / 4)
     }
 }
 

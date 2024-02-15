@@ -40,7 +40,7 @@ struct RecentCardView: View {
                             .foregroundColor(.white)
                         
                         Spacer()
-                        var count = savedChats.messages.filter({ chats in
+                        let count = savedChats.messages.filter({ chats in
                             chats.isUser == true
                         }).count
                         Text("\(count)")

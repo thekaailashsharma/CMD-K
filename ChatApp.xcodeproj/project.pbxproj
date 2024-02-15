@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		844016DB2B7D619900B9FD4D /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844016DA2B7D619900B9FD4D /* Route.swift */; };
 		844C49272B7C526300E97528 /* Gemini.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844C49252B7C526300E97528 /* Gemini.xcdatamodeld */; };
 		8466DD1D2B79000D00C15519 /* ExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466DD1C2B79000D00C15519 /* ExpandedView.swift */; };
 		849EC6F12B7A295A00DC91C0 /* DataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EC6F02B7A295A00DC91C0 /* DataContainer.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		844016DA2B7D619900B9FD4D /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		844C49262B7C526300E97528 /* Gemini.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gemini.xcdatamodel; sourceTree = "<group>"; };
 		8466DD1C2B79000D00C15519 /* ExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedView.swift; sourceTree = "<group>"; };
 		849EC6F02B7A295A00DC91C0 /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContainer.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				84B14D1E2B78D06100643FE2 /* TextFieldEtension.swift */,
 				84DC97DC2B791B1200641FA7 /* NetworkError.swift */,
 				84DC97E02B7959CA00641FA7 /* GeminiResponse.swift */,
+				844016DA2B7D619900B9FD4D /* Route.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				84BCEC272B766DA200F29A18 /* Home.swift in Sources */,
 				84BCEC3B2B76A22C00F29A18 /* AllChatsView.swift in Sources */,
 				8466DD1D2B79000D00C15519 /* ExpandedView.swift in Sources */,
+				844016DB2B7D619900B9FD4D /* Route.swift in Sources */,
 				84BCEC452B76B0BD00F29A18 /* ImageViewModel.swift in Sources */,
 				84BCEC2C2B76714300F29A18 /* HomeViewModel.swift in Sources */,
 				84BCEC3F2B76A52B00F29A18 /* Message.swift in Sources */,

@@ -15,6 +15,7 @@ actor ChatManager: ObservableObject {
     let container: NSPersistentContainer
     @MainActor @Published var allChats: [MyChats] = []
     @MainActor @Published var savedChats: [SavedChats] = []
+    @MainActor @Published var specificChats: [MyChats] = []
     @MainActor @Published var name: String? = nil
     @MainActor @Published var isMessageSent: Bool = false
     

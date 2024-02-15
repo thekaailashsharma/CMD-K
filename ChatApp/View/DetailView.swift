@@ -11,7 +11,7 @@ struct DetailView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var chatsManager: ChatManager
-    var savedMessage: SavedChats
+    @Binding var savedMessage: SavedChats
     
     var body: some View {
         
@@ -41,7 +41,7 @@ struct DetailView: View {
                 }
                 .padding()
                 
-                MessageView(recentMessage: savedMessage.messages, isChanged: $chatsManager.isMessageSent)
+                MessageView(recentMessage: savedMessage.messages)
                 
                 Spacer()
                 

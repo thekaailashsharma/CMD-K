@@ -15,7 +15,8 @@ class HomeViewModel: ObservableObject {
     
     @Published var recentMessage: [RecentMessage] = dummyRecentMessages
     
-    @Published var selectedRecentMessage: String? = dummyRecentMessages.first?.id
+    @Published var selectedRecentMessageid: UUID? = nil
+    @Published var selectedRecentMessage: SavedChats? = nil
     
     @Published var searchText: String = ""
     @Published var message: String = ""

@@ -13,7 +13,6 @@ struct MessageView: View {
     //    @Binding var isScrollChanged: Bool
     
     var recentMessage: [MyChats]
-    @Binding var isChanged: Bool
     
     var body: some View {
         GeometryReader { reader in
@@ -33,7 +32,7 @@ struct MessageView: View {
                                             withAnimation(.easeInOut(duration: 100)) {
                                                 proxy.scrollTo(recentMessage.count - 1, anchor: .bottomLeading)
                                             }
-                                            
+
                                         }
                                     }
                             }
