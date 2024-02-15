@@ -20,43 +20,13 @@ struct Home: View {
         
         NavigationView {
             HStack(spacing: 0) {
-                VStack {
-                    TabButton(tabInfo: TabDefinition(image: "message", title: .allChats), selectedTab: $homeViewModel.selectedTab)
-
-                    TabButton(tabInfo: TabDefinition(image: "person.fill", title: .personal), selectedTab: $homeViewModel.selectedTab)
-
-                    TabButton(tabInfo: TabDefinition(image: "bubble.middle.bottom", title: .Bots), selectedTab: $homeViewModel.selectedTab)
-
-                    TabButton(tabInfo: TabDefinition(image: "slider.horizontal.3", title: .edit), selectedTab: $homeViewModel.selectedTab)
-
-                    Spacer()
-
-                    TabButton(tabInfo: TabDefinition(image: "gear", title: .Settings), selectedTab: $homeViewModel.selectedTab)
-                }
+                AllChatsView()
                 .padding()
                 .padding(.top, 30)
-                .background(.ultraThickMaterial)
+                .background(.ultraThinMaterial)
                
                 
-                ZStack {
-                    switch homeViewModel.selectedTab {
-                    case .Bots : Text(homeViewModel.selectedTab.rawValue)
-                    case .allChats:
-                        NavigationView {
-                            AllChatsView()
-                        }
-                    case .edit:
-                        Text(homeViewModel.selectedTab.rawValue)
-                            
-                    case .personal:
-                        Text(homeViewModel.selectedTab.rawValue)
-                            
-                    case .Settings:
-                        Text(homeViewModel.selectedTab.rawValue)
-                            
-
-                    }
-                }
+                
                 
             }
         }.ignoresSafeArea(.all, edges: .all)

@@ -11,35 +11,12 @@ struct DetailView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var chatsManager: ChatManager
+    var focusState: FocusState<Bool?>.Binding
     
     var body: some View {
         
         HStack {
             VStack {
-                HStack {
-                    Text("Gen AI Chat")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                    
-                    Spacer()
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .font(.title2)
-                    }.buttonStyle(.plain)
-                    
-                    Button {
-                        homeViewModel.isExpanded.toggle()
-                    } label: {
-                        Image(systemName: "sidebar.right")
-                            .font(.title2)
-                            .foregroundColor(homeViewModel.isExpanded ? .primary : .blue)
-                    }.buttonStyle(.plain)
-
-                }
-                .padding()
-                
                 MessageView(recentMessage: chatsManager.allChats)
                 
                 Spacer()
@@ -51,6 +28,8 @@ struct DetailView: View {
                         .padding(.horizontal)
                         .clipShape(Capsule())
                         .background(Capsule().strokeBorder(Color.white))
+                        .focused(focusState, equals: true)
+                        .submitLabel(.send)
                     Button {
                         Task {
                             await chatsManager.saveMessage(message: homeViewModel.message, isUserMessage: true)
@@ -71,7 +50,8 @@ struct DetailView: View {
 //                .frame(width: 200)
 //                .background(BlurView())
         
-        }.ignoresSafeArea(.all, edges: .all)
+        }
+        .ignoresSafeArea(.all, edges: .all)
         
     }
 }
