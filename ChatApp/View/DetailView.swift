@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct DetailView: View {
     
@@ -17,7 +18,10 @@ struct DetailView: View {
         
         HStack {
             VStack {
-                MessageView(recentMessage: chatsManager.allChats)
+                MessageView(isSearching: homeViewModel.searchText.isEmpty, recentMessage: homeViewModel.searchText.isEmpty ? chatsManager.allChats : chatsManager.filteredChats)
+                    .onChange(of: homeViewModel.searchText) { newValue in
+                        self.addSubscribers()
+                    }
                 
                 Spacer()
                 
@@ -53,6 +57,35 @@ struct DetailView: View {
         }
         .ignoresSafeArea(.all, edges: .all)
         
+    }
+    
+    private func addSubscribers() {
+
+        homeViewModel.$searchText
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .sink { searchText in
+                self.filterChats(searchText: searchText)
+            }
+            .store(in: &chatsManager.cancellables2)
+    }
+    
+    @MainActor
+    private func filterChats(searchText: String) {
+        guard !searchText.isEmpty else {
+            chatsManager.filteredChats = []
+            return
+        }
+        
+        let modifiedSearchText = searchText.lowercased()
+        
+        chatsManager.filteredChats = chatsManager.allChats.filter({ chats in
+            let messageContainsSearch = chats.message?.contains(modifiedSearchText) ?? false
+            let nameContainsSearch = chats.name?.contains(modifiedSearchText) ?? false
+            
+            return messageContainsSearch || nameContainsSearch
+        })
+        
+        print("Filterrrr is \(chatsManager.filteredChats)")
     }
 }
 

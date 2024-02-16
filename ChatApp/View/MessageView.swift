@@ -10,7 +10,8 @@ import SwiftUI
 struct MessageView: View {
     
     @EnvironmentObject var homeViewModel: HomeViewModel
-//    @Binding var isScrollChanged: Bool
+    @EnvironmentObject var chatsManager: ChatManager
+    var isSearching: Bool
     
     var recentMessage: [MyChats]
     
@@ -20,16 +21,37 @@ struct MessageView: View {
                     ScrollViewReader { proxy in
                     VStack(spacing: 18) {
                         ForEach(recentMessage) { message in
+                            
                             MessageCardView(message: message, width: reader.frame(in: .global).width)
                                 .padding(.horizontal, 20)
                                 .id(recentMessage.firstIndex(of: message))
                         }
-                        .onChange(of: recentMessage.count, perform: { newValue in
-                            print(">>>!!! New Value is called atleast")
-                            withAnimation(.spring()) {
-                                proxy.scrollTo(recentMessage.count - 1, anchor: .bottomTrailing)
+                        .background(
+                            GeometryReader { geometry in
+                                Color.clear
+                                    .onAppear {
+                                        if recentMessage.count > 0 {
+                                            withAnimation(.easeInOut(duration: 100)) {
+                                                proxy.scrollTo(recentMessage.count - 1, anchor: .bottomLeading)
+                                            }
+                                            
+                                        }
+                                    }
                             }
-                        })
+                        )
+                        .background(
+                            GeometryReader { geometry in
+                                Color.clear
+                                    .onAppear {
+                                        if !chatsManager.filteredChats.isEmpty && !homeViewModel.searchText.isEmpty {
+                                            withAnimation(.easeInOut(duration: 100)) {
+                                                proxy.scrollTo(recentMessage.firstIndex(of: chatsManager.filteredChats.first!), anchor: .bottomLeading)
+                                            }
+                                            
+                                        }
+                                    }
+                            }
+                        )
                             
                         
                     }

@@ -14,7 +14,12 @@ actor ChatManager: ObservableObject {
     
     let container: NSPersistentContainer
     @MainActor @Published var allChats: [MyChats] = []
+    @MainActor @Published var filteredChats: [MyChats] = []
+    @MainActor @Published var searchText: String = ""
+    
     private var cancellables = Set<AnyCancellable>()
+    
+    @MainActor @Published var cancellables2 = Set<AnyCancellable>()
     
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Chats")
@@ -38,10 +43,46 @@ actor ChatManager: ObservableObject {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+        
         Task {
             await self.refreshUI()
         }
+        
+        Task {
+            await self.addSubscribers()
+        }
 
+    }
+    
+    
+    private func addSubscribers() {
+        $searchText
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .sink { searchText in
+                Task {
+                    await self.filterChats(searchText: searchText)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    @MainActor
+    private func filterChats(searchText: String) {
+        guard !searchText.isEmpty else {
+            self.filteredChats = []
+            return
+        }
+        
+        let modifiedSearchText = searchText.lowercased()
+        
+        self.filteredChats = self.allChats.filter({ chats in
+            let messageContainsSearch = chats.message?.contains(modifiedSearchText) ?? false
+            let nameContainsSearch = chats.name?.contains(modifiedSearchText) ?? false
+            
+            return messageContainsSearch || nameContainsSearch
+        })
+        
+        print("Filterrrr is \(self.filteredChats)")
     }
     
     func saveMessage(message: String, isUserMessage: Bool) async {

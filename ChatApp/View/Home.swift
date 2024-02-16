@@ -14,25 +14,27 @@ struct Home: View {
     
     @StateObject var homeViewModel = HomeViewModel()
     @StateObject var chatsManager = ChatManager()
-    
+    @State private var searchText = ""
     
     var body: some View {
         
         NavigationView {
             HStack(spacing: 0) {
                 AllChatsView()
-                .padding()
-                .padding(.top, 30)
-                .background(.ultraThinMaterial)
-               
+                    .padding()
+                    .padding(.top, 30)
+                    .background(.regularMaterial)
+                
                 
                 
                 
             }
-        }.ignoresSafeArea(.all, edges: .all)
-//            .frame(maxWidth: screen.width / 1.2, maxHeight: screen.height - 60)
-            .environmentObject(homeViewModel)
-            .environmentObject(chatsManager)
+        }
+        .searchable(text: $chatsManager.searchText)
+        .ignoresSafeArea(.all, edges: .all)
+        //            .frame(maxWidth: screen.width / 1.2, maxHeight: screen.height - 60)
+        .environmentObject(homeViewModel)
+        .environmentObject(chatsManager)
     }
 }
 
