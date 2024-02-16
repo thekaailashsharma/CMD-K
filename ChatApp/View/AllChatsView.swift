@@ -14,64 +14,41 @@ struct AllChatsView: View {
     
     var body: some View {
         VStack {
+            Text("Gen AI Chat")
+                .font(.custom("Poppins-Regular", size: 19))
+                .foregroundColor(.white)
+                .padding(.bottom)
+            
             HStack {
-                Text("Gen AI Chat")
-                    .font(.custom("Poppins-Regular", size: 26))
-                    .foregroundColor(.white)
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
                 
-                Spacer()
-                
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.gray)
-                    
-                    TextField("Search", text: $homeViewModel.searchText)
-                        .textFieldStyle(.plain)
-                        .focused($focusState, equals: false)
-                        .submitLabel(.search)
-                        .onAppear {
-                            focusState = true
-                        }
-                }
-                .padding(.vertical, 8)
-                .padding(.horizontal)
-                .background(.primary.opacity(0.15))
-                .cornerRadius(10)
-                .padding()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "sidebar.right")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                }
-                .padding()
-                .buttonStyle(.plain)
-                
-                
+                TextField("Search", text: $homeViewModel.searchText)
+                    .textFieldStyle(.plain)
+                    .focused($focusState, equals: false)
+                    .submitLabel(.search)
+                    .onAppear {
+                        focusState = true
+                    }
             }
+            .padding(.vertical, 8)
+            .padding(.horizontal)
+            .background(.primary.opacity(0.15))
+            .cornerRadius(10)
+            .padding()
+            
+            
             
             
             
             DetailView(focusState: $focusState)
             
-//            List(selection: $homeViewModel.selectedRecentMessage) {
-//                ForEach(homeViewModel.recentMessage) { msg in
-////                    NavigationLink {
-//                        DetailView(user: msg)
-////                    } label: {
-////                        RecentCardView(recentMessage: msg)
-////                    }
-//
-//                }
-//            }
-//            .listStyle(SidebarListStyle())
+            
+               
         }
         .onAppear {
             focusState = true
         }
-        .frame(maxWidth: screen.width)
     }
 }
 

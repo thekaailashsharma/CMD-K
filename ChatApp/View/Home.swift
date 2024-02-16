@@ -18,21 +18,18 @@ struct Home: View {
     
     var body: some View {
         
-        NavigationView {
-            HStack(spacing: 0) {
-                AllChatsView()
-                    .padding()
-                    .padding(.top, 30)
-                    .background(.ultraThickMaterial)
-                
-                
-                
-                
-            }
+        HStack(spacing: 0) {
+            AllChatsView()
+                .padding()
+                .padding(.top, 30)
+                .background(.ultraThickMaterial)
+            
+            
+            
+            
         }
         .searchable(text: $chatsManager.searchText)
         .ignoresSafeArea(.all, edges: .all)
-        //            .frame(maxWidth: screen.width / 1.2, maxHeight: screen.height - 60)
         .environmentObject(homeViewModel)
         .environmentObject(chatsManager)
     }

@@ -33,7 +33,12 @@ struct DetailView: View {
                         .clipShape(Capsule())
                         .background(Capsule().strokeBorder(Color.white))
                         .focused(focusState, equals: true)
-                        .submitLabel(.send)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            Task {
+                                await chatsManager.saveMessage(message: homeViewModel.message, isUserMessage: true)
+                            }
+                        }
                     Button {
                         Task {
                             await chatsManager.saveMessage(message: homeViewModel.message, isUserMessage: true)
