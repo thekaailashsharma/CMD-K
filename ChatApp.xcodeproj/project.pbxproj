@@ -33,6 +33,7 @@
 		84DC97DD2B791B1200641FA7 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC97DC2B791B1200641FA7 /* NetworkError.swift */; };
 		84DC97DF2B791B4900641FA7 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC97DE2B791B4900641FA7 /* WebService.swift */; };
 		84DC97E12B7959CA00641FA7 /* GeminiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC97E02B7959CA00641FA7 /* GeminiResponse.swift */; };
+		84DD26C42B7FD89F00270321 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 84DD26C32B7FD89F00270321 /* HotKey */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DD26C42B7FD89F00270321 /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +195,9 @@
 			dependencies = (
 			);
 			name = ChatApp;
+			packageProductDependencies = (
+				84DD26C32B7FD89F00270321 /* HotKey */,
+			);
 			productName = ChatApp;
 			productReference = 84BCEC132B7663C400F29A18 /* ChatApp.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +226,9 @@
 				Base,
 			);
 			mainGroup = 84BCEC0A2B7663C400F29A18;
+			packageReferences = (
+				84DD26C22B7FD89F00270321 /* XCRemoteSwiftPackageReference "HotKey" */,
+			);
 			productRefGroup = 84BCEC142B7663C400F29A18 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -476,6 +484,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84DD26C22B7FD89F00270321 /* XCRemoteSwiftPackageReference "HotKey" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/soffes/HotKey";
+			requirement = {
+				kind = exactVersion;
+				version = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84DD26C32B7FD89F00270321 /* HotKey */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84DD26C22B7FD89F00270321 /* XCRemoteSwiftPackageReference "HotKey" */;
+			productName = HotKey;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		849EC6E82B7A25E700DC91C0 /* Chats.xcdatamodeld */ = {

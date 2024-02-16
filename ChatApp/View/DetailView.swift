@@ -76,17 +76,26 @@ struct DetailView: View {
             return
         }
         
-        let modifiedSearchText = searchText.lowercased()
-        
-        chatsManager.filteredChats = chatsManager.allChats.filter({ chats in
-            let messageContainsSearch = chats.message?.contains(modifiedSearchText) ?? false
-            let nameContainsSearch = chats.name?.contains(modifiedSearchText) ?? false
+        let searchTokens = searchText.lowercased().split(separator: " ")
+        chatsManager.filteredChats = chatsManager.allChats.filter { chat in
+            // Check for partial matches in message content
+            let messageMatches = searchTokens.contains { token in
+                guard let message = chat.message?.lowercased() else { return false }
+                return message.contains(token)
+            }
             
-            return messageContainsSearch || nameContainsSearch
-        })
+            // Check for partial matches in sender name
+            let nameMatches = searchTokens.contains { token in
+                guard let name = chat.name?.lowercased() else { return false }
+                return name.contains(token)
+            }
+            
+            return messageMatches || nameMatches
+        }
         
-        print("Filterrrr is \(chatsManager.filteredChats)")
+        print("Filtered chats: \(chatsManager.filteredChats)")
     }
+
 }
 
 struct DetailView_Previews: PreviewProvider {
