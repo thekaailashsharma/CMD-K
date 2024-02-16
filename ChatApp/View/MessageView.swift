@@ -68,6 +68,8 @@ struct MessageCardView: View {
     var message: MyChats
     var userImage: String = dummyRecentMessages[0].userImage
     var width: CGFloat
+//    var textWithMarkdown: LocalizedStringKey = LocalizedStringKey(message.message ?? "")
+//    var keyText: LocalizedStringKey = message.message ?? ""
     
     var body: some View {
         
@@ -81,7 +83,7 @@ struct MessageCardView: View {
                         .clipShape(Circle())
                         .offset(y: 10)
                     
-                    Text(message.message ?? "")
+                    Text(LocalizedStringKey(message.message ?? ""))
                         .font(.custom("Poppins-Regular", size: 13))
                         .font(.system(size: 9))
                         .padding(10)

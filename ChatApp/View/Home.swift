@@ -23,7 +23,7 @@ struct Home: View {
                 AllChatsView()
                     .padding()
                     .padding(.top, 30)
-                    .background(.regularMaterial)
+                    .background(.ultraThickMaterial)
                 
                 
                 
