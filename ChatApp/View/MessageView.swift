@@ -16,9 +16,9 @@ struct MessageView: View {
     var recentMessage: [MyChats]
     
     var body: some View {
-            GeometryReader { reader in
-                ScrollView {
-                    ScrollViewReader { proxy in
+        GeometryReader { reader in
+            ScrollView {
+                ScrollViewReader { proxy in
                     VStack(spacing: 18) {
                         ForEach(recentMessage) { message in
                             
@@ -52,7 +52,7 @@ struct MessageView: View {
                                     }
                             }
                         )
-                            
+                        
                         
                     }
                     .padding(.vertical, 20)
@@ -68,13 +68,14 @@ struct MessageCardView: View {
     var message: MyChats
     var userImage: String = dummyRecentMessages[0].userImage
     var width: CGFloat
-//    var textWithMarkdown: LocalizedStringKey = LocalizedStringKey(message.message ?? "")
-//    var keyText: LocalizedStringKey = message.message ?? ""
+    
+    @State var isPasteVisible: Bool  = false
     
     var body: some View {
         
         HStack {
             if !message.isUser {
+                
                 HStack {
                     ImageView(urlString: userImage)
                         .background(.primary.opacity(0.3))
@@ -83,14 +84,48 @@ struct MessageCardView: View {
                         .clipShape(Circle())
                         .offset(y: 10)
                     
-                    Text(LocalizedStringKey(message.message ?? ""))
-                        .font(.custom("Poppins-Regular", size: 13))
-                        .font(.system(size: 9))
-                        .padding(10)
-                        .background(.primary.opacity(0.3))
-                        .foregroundColor(.white)
-                        .clipShape(MessageBubble())
-                        .frame(minWidth: 0, maxWidth: width, alignment: .leading)
+                    VStack {
+                        
+                        Text(LocalizedStringKey(message.message ?? ""))
+                            .font(.custom("Poppins-Regular", size: 13))
+                            .font(.system(size: 9))
+                            .foregroundColor(.white)
+                            .frame(minWidth: 0, maxWidth: width, alignment: .leading)
+                            .padding(10)
+                        
+                        Spacer()
+                        
+                        HStack {
+                            
+                            Spacer()
+                            
+                            
+                            Button {
+                                withAnimation(.interactiveSpring()) {
+                                    isPasteVisible.toggle()
+                                    let pasteBoard = NSPasteboard.general
+                                    pasteBoard.clearContents()
+                                    pasteBoard.writeObjects([(message.message ?? "") as NSString])
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        isPasteVisible.toggle()
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: isPasteVisible ? "checkmark" : "doc.on.doc")
+                                    .frame(width: 30, height: 30)
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                            }
+                            .buttonStyle(.plain)
+                            .padding([.trailing, .bottom], 10)
+                            
+                        }
+                    }
+                    .frame(minWidth: 0, maxWidth: width, alignment: .leading)
+                    .background(.tertiary.opacity(0.3).blendMode(.lighten))
+                    .clipShape(MessageBubble())
+                    .padding(.horizontal, 10)
+                    
+                    
                 }
             } else {
                 Spacer ()
@@ -102,7 +137,7 @@ struct MessageCardView: View {
                     .foregroundColor(.white)
                     .clipShape(MyMessageBubble())
                     .frame(minWidth: 0, maxWidth: width / 2, alignment: .trailing)
-                    
+                
             }
         }
     }
@@ -159,4 +194,4 @@ struct MyMessageBubble : Shape {
         }
     }
 }
-    
+
